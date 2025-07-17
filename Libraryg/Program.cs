@@ -1,12 +1,16 @@
 ﻿using Libraryg.Bibl;
 using Libraryg.Menus;
 
-Dictionary<string, Usuario> usuarios = new Dictionary<string, Usuario>();
+Dictionary<int, Usuario> usuarios = new Dictionary<int, Usuario>();
+Usuario usuario1 = new Usuario("Gabriela", "gabriela@gmail.com", "21984295489");
+Usuario usuario2 = new Usuario("Simon", "simon@outlook.com", "21993490205");
+usuarios.Add(usuario1.UsuarioId, usuario1);
+usuarios.Add(usuario2.UsuarioId, usuario2);
 Dictionary<string, Livro> livros = new Dictionary<string, Livro>();
 Livro livro1 = new Livro("O Senhor dos Anéis", "J.R.R. Tolkien", "HarperCollins", 1954);
 Livro livro2 = new Livro("1984", "George Orwell", "Secker & Warburg", 1949);
 Livro livro3 = new Livro("Dom Quixote", "Miguel de Cervantes", "Francisco de Robles", 1605);
-livros.Add(livro1.Titulo, livro1 );
+livros.Add(livro1.Titulo, livro1);
 livros.Add(livro2.Titulo, livro2);
 livros.Add(livro3.Titulo, livro3);
 
@@ -38,13 +42,13 @@ void ExibirOpcoesDoMenu()
     string opcaoEscolhida = Console.ReadLine()!;
     int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
 
-  if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
+    if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
     {
         Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
         menuASerExibido.Executar(livros, usuarios);
         if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
     }
-  else
+    else
     {
         Console.WriteLine("Opção inválida");
     }

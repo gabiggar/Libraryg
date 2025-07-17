@@ -1,19 +1,30 @@
 ﻿using Libraryg.Bibl;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Libraryg.Menus
 {
     internal class MenuEmprestarLivro : Menu
     {
-        public override void Executar(Dictionary<string, Livro> livros, Dictionary<string, Usuario> usuarios)
+        public override void Executar(Dictionary<string, Livro> livros, Dictionary<int, Usuario> usuarios)
         {
             base.Executar(livros, usuarios);
 
             ExibirTituloDaOpcao("EMPRÉSTIMO DE LIVRO");
+
+            Console.Write("Digite o ID do usuário: ");
+            string idUsuario = Console.ReadLine()!;
+            int idDoUsuario = int.Parse(idUsuario);
+
+            if (!usuarios.ContainsKey(idDoUsuario))
+            {
+                Console.WriteLine("Usuário não encontrado.");
+                Console.WriteLine("\nPressione qualquer tecla para retornar ao menu principal.");
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+
+            Usuario usuario = usuarios[idDoUsuario];
+
             List<Livro> livrosDisponiveis = new List<Livro>();
             foreach (var kvp in livros)
             {
@@ -56,7 +67,9 @@ namespace Libraryg.Menus
             {
                 Livro livroEmprestado = livrosDisponiveis[indiceEscolhido - 1];
                 livroEmprestado.Disponivel = false;
-                Console.WriteLine($"\nVocê emprestou o livro: {livroEmprestado.Titulo}");
+
+                usuario.LivrosEmprestados.Add(livroEmprestado);
+                Console.WriteLine($"\nO livro: {livroEmprestado.Titulo} foi emprestado para o usuário {usuario.Nome}, ID: {usuario.UsuarioId}");
                 Console.WriteLine("Obrigado por utilizar nosso serviço de empréstimo!");
                 Console.WriteLine("\nPressione qualquer tecla para retornar ao menu principal.");
                 Console.ReadKey();

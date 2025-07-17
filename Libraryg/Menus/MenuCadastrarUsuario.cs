@@ -5,7 +5,7 @@ namespace Libraryg.Menus
 {
     internal class MenuCadastrarUsuario : Menu
     {
-        public override void Executar(Dictionary<string, Livro> livros, Dictionary<string, Usuario> usuarios)
+        public override void Executar(Dictionary<string, Livro> livros, Dictionary<int, Usuario> usuarios)
         {
             base.Executar(livros, usuarios);
 
@@ -17,8 +17,8 @@ namespace Libraryg.Menus
             Console.Write("Digite o telefone do usuário: ");
             string telefone = Console.ReadLine()!;
             Usuario novoUsuario = new Usuario(nome, email, telefone);
-            usuarios[email]= (novoUsuario);
-            Console.WriteLine("Usuário cadastrado com sucesso!");
+            usuarios.Add(novoUsuario.UsuarioId, novoUsuario);
+            Console.WriteLine($"Usuário cadastrado com o ID: {novoUsuario.UsuarioId}");
             Thread.Sleep(2000);
             Console.Clear();
         }

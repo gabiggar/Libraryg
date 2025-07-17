@@ -12,7 +12,7 @@ namespace Libraryg.Menus
             Console.WriteLine(titulo);
             Console.WriteLine(asteriscos + "\n");
         }
-        public virtual void Executar (Dictionary<string, Livro> livros, Dictionary<string, Usuario> usuarios)
+        public virtual void Executar(Dictionary<string, Livro> livros, Dictionary<int, Usuario> usuarios)
         {
             Console.Clear();
         }

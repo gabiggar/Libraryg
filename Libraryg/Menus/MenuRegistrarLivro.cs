@@ -5,7 +5,7 @@ namespace Libraryg.Menus
 {
     internal class MenuRegistrarLivro : Menu
     {
-        public override void Executar(Dictionary<string, Livro> livros, Dictionary<string, Usuario> usuarios)
+        public override void Executar(Dictionary<string, Livro> livros, Dictionary<int, Usuario> usuarios)
         {
             base.Executar(livros, usuarios);
             ExibirTituloDaOpcao("REGISTRAR LIVRO");
@@ -24,7 +24,6 @@ namespace Libraryg.Menus
             Console.WriteLine("\nPressione qualquer tecla para retornar ao menu principal.");
             Console.ReadKey();
             Console.Clear();
-
         }
     }
 }
